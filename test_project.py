@@ -15,10 +15,8 @@ class FinalProjectTestCase(unittest.TestCase):
 
     def setUp(self):
         """Define test variables and initialize app."""
-        self.app = create_app()
+        self.app = create_app(True)
         self.client = self.app.test_client
-        # self.database_name = "trivia_test"
-        # self.database_path = "postgres://{}/{}".format('localhost:5432', self.database_name)
         self.database_path = "postgres://postgres:1234@localhost:5432/final_project"
         setup_db(self.app, self.database_path)
 
@@ -74,7 +72,7 @@ class FinalProjectTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'method not allowed')
 
     """
-    GET QUESTIONS FROM CATEGORY
+    GET PLAYERS BY CLUB
     """
 
     def test_get_players_by_club(self):
@@ -138,7 +136,7 @@ class FinalProjectTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'method not allowed')
 
     """
-    POST PLAYER
+    PATCH PLAYER
     """
 
     def test_edit_player(self):

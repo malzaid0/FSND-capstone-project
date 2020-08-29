@@ -6,14 +6,20 @@ from auth import AuthError, requires_auth
 from models import setup_db, Club, Player
 
 
-def create_app(test_config=None):
-    app = Flask(__name__)
-    setup_db(app)
-    CORS(app)
+def create_app(test_config=False):
+    if test_config:
+        app = Flask(__name__)
+        database_path = "postgres://postgres:1234@localhost:5432/final_project"
+        setup_db(app, database_path)
+        CORS(app)
+    else:
+        app = Flask(__name__)
+        setup_db(app)
+        CORS(app)
 
     # ROUTES
     '''
-        GET /general-view
+    GET /clubs
     '''
 
     @app.route('/clubs', methods=['GET'])
@@ -27,7 +33,7 @@ def create_app(test_config=None):
         })
 
     '''
-        GET /hr-view
+    GET /players
     '''
 
     @app.route('/players', methods=['GET'])
@@ -42,7 +48,7 @@ def create_app(test_config=None):
         })
 
     '''
-        GET /executive-view
+    GET /players by club
     '''
 
     @app.route('/clubs/<int:club_id>/players', methods=['GET'])
@@ -57,7 +63,7 @@ def create_app(test_config=None):
         })
 
     '''
-    POST /employee
+    POST /clubs
     '''
 
     @app.route('/clubs', methods=['POST'])
@@ -78,6 +84,10 @@ def create_app(test_config=None):
 
         except:
             abort(422)
+
+    '''
+    POST /players
+    '''
 
     @app.route('/players', methods=['POST'])
     @requires_auth('post:players')
@@ -100,7 +110,7 @@ def create_app(test_config=None):
             abort(422)
 
     '''
-    PATCH /employees/<id>
+    PATCH /players
     '''
 
     @app.route('/players/<int:player_id>', methods=['PATCH'])
@@ -133,7 +143,7 @@ def create_app(test_config=None):
             abort(422)
 
     '''
-        DELETE /employees/<id>
+    DELETE /players
     '''
 
     @app.route('/players/<int:player_id>', methods=['DELETE'])

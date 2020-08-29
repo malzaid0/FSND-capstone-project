@@ -2,8 +2,9 @@ from sqlalchemy import Column, String, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-# database_path = os.environ['DATABASE_URL']
+
 database_path = "postgres://xjrgdzeziyqdoa:47bfcd51346b75dfe1d2d33ebcedf7ccb6ee2643a910fdb1097455f65c76b412@ec2-34-236-215-156.compute-1.amazonaws.com:5432/d3i6kjjjiobs61"
+
 db = SQLAlchemy()
 
 '''
@@ -21,7 +22,6 @@ def setup_db(app, database_path=database_path):
 
 
 class Club(db.Model):
-    # __tablename__ = 'Club'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
