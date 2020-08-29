@@ -57,7 +57,7 @@ def create_app(test_config=None):
         })
 
     '''
-        POST /employee
+    POST /employee
     '''
 
     @app.route('/clubs', methods=['POST'])
@@ -100,7 +100,7 @@ def create_app(test_config=None):
             abort(422)
 
     '''
-        PATCH /employees/<id>
+    PATCH /employees/<id>
     '''
 
     @app.route('/players/<int:player_id>', methods=['PATCH'])
