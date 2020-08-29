@@ -74,6 +74,8 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ilh3czRDOENNSlhBd0dTQ3BDZXh6dyJ9.eyJ
 
 
 GET `````'/clubs'`````
+
+response
 ```
 {
     "clubs": [
@@ -86,8 +88,10 @@ GET `````'/clubs'`````
     "success": true
 }
 ```
-
+-------------------------
 GET `````'/players'`````
+
+response
 ```
 {
     "players": [
@@ -101,7 +105,10 @@ GET `````'/players'`````
     "success": true
 }
 ```
+-------------------------
 GET `````/clubs/<int:actor_id>/players`````
+
+response
 ```
 {
     "players": [
@@ -114,7 +121,18 @@ GET `````/clubs/<int:actor_id>/players`````
     "success": true
 }
 ```
-POST /clubs
+-------------------------
+POST `````/clubs`````
+
+sample
+```
+{
+    "name": "Real Madrid",
+    "league": "Laliga"
+}
+```
+
+response
 ```
 {
     "club": {
@@ -125,7 +143,19 @@ POST /clubs
     "success": true
 }
 ```
+-------------------------
 POST `````'/players'`````
+
+sample
+```
+{
+    "name": "Sergio Ramos",
+    "age": 33,
+    "club": 2
+}
+```
+
+response
 ```
 {
     "player": {
@@ -137,8 +167,19 @@ POST `````'/players'`````
     "success": true
 }
 ```
-
+-------------------------
 PATCH `````'/players/<int:player_id>'`````
+
+sample
+```
+{
+    "name": "Babi Gomis",
+    "age": 34,
+    "club": 1
+}
+```
+
+response
 ```
 {
     "player": {
@@ -150,8 +191,10 @@ PATCH `````'/players/<int:player_id>'`````
     "success": true
 }
 ```
-
+-------------------------
 DELETE `````'/players/<int:player_id>'`````
+
+response
 ```
 {
     "delete": 6,
